@@ -4,9 +4,9 @@ import json
 ''' Return top 3 best challenger players by win rate '''
 
 class RiotAPI:
-    def __init__(self):
+    def __init__(self, given_key):
         self.routing_value = "na1.api.riotgames.com"
-        self.api_key = "RGAPI-05b2dabe-7f02-4187-8905-d8143076bb5b"
+        self.api_key = given_key
 
     def lookup(self):
         response = requests.get("https://" + self.routing_value +
@@ -25,6 +25,3 @@ class RiotAPI:
         sorted_winrates = sorted(winrates.items(), key = lambda x: x[1], reverse = True)
         for x in range(3):
             print("Summoner Name: {name}, Win Ratio: {wr:.2f}").format(name = sorted_winrates[x][0], wr = sorted_winrates[x][1])
-
-x = RiotAPI()
-x.lookup()
